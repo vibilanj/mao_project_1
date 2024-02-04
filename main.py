@@ -18,3 +18,16 @@ print_mst(mst)
 for (u, v, w) in mst:
     G.edges[u, v]["color"] = "red"
 draw_graph_to_file(G, "graph_mst.png")
+
+# TODO: implement the main loop with the following commands
+# add
+# remove
+# submit 
+# show
+# exit
+
+# Input for add and remove can be as follows
+# (u,v)
+# u->v
+# u,v
+# u v

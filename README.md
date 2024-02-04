@@ -14,8 +14,3 @@ Alternatively, for a more interactive experience (time permitting), a graphical 
 
 - To ensure that the answer is correct, we can either check that the minimum cost is the same (regardless of uniqueness) or check that the edges provided for the MST are exactly the same (only works for graphs that have a unique minimum spanning tree)
 - Minimum spanning trees are guaranteed to be unique when each edge has a distinct weight (see https://en.wikipedia.org/wiki/Minimum_spanning_tree#Uniqueness)
-
-
-## Todo
-
-- Create user input loop to allow user to interface the game
