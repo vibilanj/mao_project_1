@@ -6,12 +6,14 @@ class DisjointSet:
         self.parent = [i for i in range(n)]
         self.rank = [0] * n
 
+
     # Finds the representative of the set that contains x.
     def find(self, x):
         if self.parent[x] != x:
             self.parent[x] = self.find(self.parent[x])
         return self.parent[x]
     
+
     # Unions the sets that contain x and y.
     def union(self, x, y):
         x_rep = self.find(x)
