@@ -1,5 +1,6 @@
 from disjoint_set import DisjointSet
 
+
 #  Kruskal's algorithm for finding the minimum spanning tree of a graph.
 def kruskal(n, edges):
     # Stores the resulting minimum spanning tree.
@@ -36,6 +37,7 @@ def kruskal(n, edges):
     return mst
 
 
+# Prints the cost and edges of the minimum spanning tree.
 def print_mst(mst):
     minimum_cost = sum(w for (_, _, w) in mst)
     print(f"Minimum cost: {minimum_cost}")
