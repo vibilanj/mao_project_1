@@ -2,16 +2,11 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import random
 
-# Generation parameters
-n = 10
-p = 0.25
-# TODO: add more parameters for weight ranges, node color, edge color, etc.
-
 random.seed(1) # TODO: remove seed
 
 
 # Generate a random connected weighted graph.
-def generate_random_graph():
+def generate_random_graph(n, p, max_weight):
     # Generating random connected graphs
     G = nx.gnp_random_graph(n, p, seed = 1) # TODO: remove seed
     while not nx.is_connected(G):
@@ -19,7 +14,7 @@ def generate_random_graph():
 
     # Adding random weights to the edges
     for (u, v) in G.edges():
-        G.edges[u, v]["weight"] = random.randint(1, 10)
+        G.edges[u, v]["weight"] = random.randint(1, max_weight)
         G.edges[u, v]["color"] = "black"
 
     return G

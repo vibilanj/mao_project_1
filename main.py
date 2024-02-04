@@ -1,8 +1,13 @@
-from graph_util import generate_random_graph, draw_graph_to_file, n
+from graph_util import generate_random_graph, draw_graph_to_file
 from kruskal import kruskal, print_mst
 
+# Generation parameters
+n = 10
+p = 0.25
+max_weight = 10
+
 # Generating and drwaing the graph
-G = generate_random_graph()
+G = generate_random_graph(n, p , max_weight)
 draw_graph_to_file(G, "graph.png")
 
 # Finding the minimum spanning tree for the graph
