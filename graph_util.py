@@ -42,3 +42,21 @@ def draw_graph_to_file(G, filename):
         )
         
     plt.savefig(filename)
+
+
+# Prints the cost and edges of the minimum spanning tree.
+def print_mst(mst):
+    minimum_cost = sum(w for (_, _, w) in mst)
+    print(f"Minimum cost: {minimum_cost}")
+    print("Edges: ")
+    for u, v, w in mst:
+        print(f"\t({u}, {v}): {w}")
+
+
+# Drawing and printing the solution
+def show_solution(G, mst):
+    for (u, v, _) in mst:
+        G.edges[u, v]["color"] = "red"
+    draw_graph_to_file(G, "graph.png")
+    print_mst(mst)
+

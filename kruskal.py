@@ -35,12 +35,3 @@ def kruskal(n, edges):
             ds.union(u_rep, v_rep)
     
     return mst
-
-
-# Prints the cost and edges of the minimum spanning tree.
-def print_mst(mst):
-    minimum_cost = sum(w for (_, _, w) in mst)
-    print(f"Minimum cost: {minimum_cost}")
-    print("Edges: ")
-    for u, v, w in mst:
-        print(f"\t({u}, {v}): {w}")
