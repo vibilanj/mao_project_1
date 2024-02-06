@@ -1,5 +1,7 @@
 from graph_util import generate_random_graph, draw_graph_to_file, show_solution
 from kruskal import kruskal
+import re
+
 
 # Generation parameters
 n = 10
@@ -29,19 +31,64 @@ Here are the possible commands you can use:
     exit
 """)
 
+def match_edge(edge):
+    pattern = r"\((\d+),(\d+)\)"
+    match = re.match(pattern, edge)
+    if not match:
+        return None
+
+    u, v = map(int, match.groups())
+    if u < v:
+        return u, v
+    else:
+        return v, u
+
+selected_edges = set()
+
 while True:
     user_input = input("Enter a valid command: ")
     user_input_list = user_input.strip().split(" ")
 
     match user_input_list:
         case ["add", edge]:
-            print("add")
+            nodes = match_edge(edge)
+            if not nodes:
+                print("Edge is not specificed with the correct format.\n")
+                continue
+            u, v = nodes
+
+            if (u, v) not in G.edges:
+                print("Cannot add edge that does not exist.\n")
+                continue
+
+            selected_edges.add((u, v))
+            G.edges[u, v]["color"] = "red"
+            draw_graph_to_file(G, "graph.png")
+            print(f"Added the edge ({u},{v}).\n")
 
         case ["remove", edge]:
-            print("remove")
+            nodes = match_edge(edge)
+            if not nodes:
+                print("Edge is not specificed with the correct format.\n")
+                continue
+            u, v = nodes
+
+            if (u, v) not in G.edges:
+                print("Cannot remove edge that does not exist.\n")
+                continue
+
+            if (u, v) not in selected_edges:
+                print("Cannot remove an edge that was not selected.\n")
+                continue
+
+            selected_edges.remove((u, v))
+            G.edges[u, v]["color"] = "black"
+            draw_graph_to_file(G, "graph.png")
+            print(f"Removed the edge ({u},{v}).\n")
 
         case ["submit"]:
-            print("submit")
+            # TODO: implement submit
+            pass
 
         case ["help"]:
             print("""
