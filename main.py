@@ -15,7 +15,7 @@ draw_graph_to_file(G, "graph.png")
 # Finding the minimum spanning tree for the graph
 mst = kruskal(n, G.edges(data = True))
 
-# User input loop
+# Instructions for usage
 print("""
 Minimum Spanning Tree Game
 
@@ -31,6 +31,7 @@ Here are the possible commands you can use:
     exit
 """)
 
+# Matches the edges in (u,v) format and returns the nodes (smallest first).
 def match_edge(edge):
     pattern = r"\((\d+),(\d+)\)"
     match = re.match(pattern, edge)
@@ -42,14 +43,16 @@ def match_edge(edge):
         u, v = v, u
     return u, v
 
-
+# Set to store edges selected by the user.
 selected_edges = set()
 
+# User input loop
 while True:
     user_input = input("Enter a valid command: ")
     user_input_list = user_input.strip().split(" ")
 
     match user_input_list:
+        # Add an edge to the selection
         case ["add", edge]:
             nodes = match_edge(edge)
             if not nodes:
@@ -70,6 +73,7 @@ while True:
             draw_graph_to_file(G, "graph.png")
             print(f"Added the edge ({u},{v}).\n")
 
+        # Remove an edge from the selection
         case ["remove", edge]:
             nodes = match_edge(edge)
             if not nodes:
@@ -94,6 +98,7 @@ while True:
             draw_graph_to_file(G, "graph.png")
             print(f"Removed the edge ({u},{v}).\n")
 
+        # Submit the selection and check if it is a valid minimum spannign tree.
         case ["submit"]:
             if len(selected_edges) != len(mst):
                 print("Incomplete solution.\n")
@@ -110,6 +115,7 @@ while True:
             print_mst(mst)
             break
 
+        # Provide more information about program usage.
         case ["help"]:
             print("""
 Here are the possible commands you can use with examples:
@@ -133,12 +139,15 @@ Here are the possible commands you can use with examples:
     exit : Exits out of the program.
 """)
 
+        # Show the generated minimum spanning tree solution.
         case ["show"]:
            show_solution(G, mst)
            break
 
+        # Exit the program.
         case ["exit"]:
             break
 
+        # Catch invalid commands.
         case _:
             print("Invalid command. Type `help` to see some examples.\n")
