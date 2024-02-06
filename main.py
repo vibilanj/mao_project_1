@@ -1,4 +1,4 @@
-from graph_util import generate_random_graph, draw_graph_to_file, show_solution
+from graph_util import *
 from kruskal import kruskal
 import re
 
@@ -95,8 +95,20 @@ while True:
             print(f"Removed the edge ({u},{v}).\n")
 
         case ["submit"]:
-            # TODO: implement submit
-            pass
+            if len(selected_edges) != len(mst):
+                print("Incomplete solution.\n")
+                continue
+
+            minimum_cost = sum(w for (_, _, w) in mst)
+            selected_cost = sum(w for (_, _, w) in selected_edges)
+
+            if minimum_cost != selected_cost:
+                print("Wrong solution.\n")
+                continue
+
+            print("Correct solution! Here the generated minimum spanning tree:\n")
+            print_mst(mst)
+            break
 
         case ["help"]:
             print("""
