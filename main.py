@@ -38,10 +38,10 @@ def match_edge(edge):
         return None
 
     u, v = map(int, match.groups())
-    if u < v:
-        return u, v
-    else:
-        return v, u
+    if u > v:
+        u, v = v, u
+    return u, v
+
 
 selected_edges = set()
 
@@ -61,7 +61,11 @@ while True:
                 print("Cannot add edge that does not exist.\n")
                 continue
 
-            selected_edges.add((u, v))
+            for edge in G.edges(data = True):
+                if edge[0:-1] == (u, v):
+                    w = edge[-1]["weight"]
+
+            selected_edges.add((u, v, w))
             G.edges[u, v]["color"] = "red"
             draw_graph_to_file(G, "graph.png")
             print(f"Added the edge ({u},{v}).\n")
@@ -77,11 +81,15 @@ while True:
                 print("Cannot remove edge that does not exist.\n")
                 continue
 
-            if (u, v) not in selected_edges:
+            for edge in G.edges(data = True):
+                if edge[0:-1] == (u, v):
+                    w = edge[-1]["weight"]
+
+            if (u, v, w) not in selected_edges:
                 print("Cannot remove an edge that was not selected.\n")
                 continue
 
-            selected_edges.remove((u, v))
+            selected_edges.remove((u, v, w))
             G.edges[u, v]["color"] = "black"
             draw_graph_to_file(G, "graph.png")
             print(f"Removed the edge ({u},{v}).\n")
