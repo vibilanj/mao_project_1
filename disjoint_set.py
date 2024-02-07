@@ -1,5 +1,5 @@
-# Disjoint Set data structure for the Union-Find algorithm.
-# This is used to check whether the edge that we are considering adding to the
+# Disjoint Set data structure for the Union-Find algorithm. This is used
+# to check whether the edge that we are considering adding to the minimum
 # spanning tree forms a cycle or not.
 class DisjointSet:
     def __init__(self, n):
@@ -7,14 +7,14 @@ class DisjointSet:
         self.rank = [0] * n
 
 
-    # Finds the representative of the set that contains x.
+    # Finds the representative of the set that contains the element x.
     def find(self, x):
         if self.parent[x] != x:
             self.parent[x] = self.find(self.parent[x])
         return self.parent[x]
     
 
-    # Unions the sets that contain x and y.
+    # Unions the sets that contain elements x and y.
     def union(self, x, y):
         x_rep = self.find(x)
         y_rep = self.find(y)

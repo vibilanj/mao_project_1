@@ -8,12 +8,27 @@ n = 10
 p = 0.25
 max_weight = 10
 
-# Generating and drwaing the graph
+# Generating and drawing the graph
 G = generate_random_graph(n, p , max_weight)
 draw_graph_to_file(G, "graph.png")
 
 # Finding the minimum spanning tree for the graph
 mst = kruskal(n, G.edges(data = True))
+
+# Matches the edges in (u,v) format and returns the nodes (smallest first).
+def match_edge(edge):
+    pattern = r"\((\d+),(\d+)\)"
+    match = re.match(pattern, edge)
+    if not match:
+        return None
+
+    u, v = map(int, match.groups())
+    if u > v:
+        u, v = v, u
+    return u, v
+
+# Set to store edges selected by the user.
+selected_edges = set()
 
 # Instructions for usage
 print("""
@@ -30,21 +45,6 @@ Here are the possible commands you can use:
     show
     exit
 """)
-
-# Matches the edges in (u,v) format and returns the nodes (smallest first).
-def match_edge(edge):
-    pattern = r"\((\d+),(\d+)\)"
-    match = re.match(pattern, edge)
-    if not match:
-        return None
-
-    u, v = map(int, match.groups())
-    if u > v:
-        u, v = v, u
-    return u, v
-
-# Set to store edges selected by the user.
-selected_edges = set()
 
 # User input loop
 while True:
