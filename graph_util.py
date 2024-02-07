@@ -2,13 +2,11 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import random
 
-random.seed(1) # TODO: remove seed
-
 
 # Generate a random connected weighted graph.
 def generate_random_graph(n, p, max_weight):
     # Generating random connected graphs
-    G = nx.gnp_random_graph(n, p, seed = 1) # TODO: remove seed
+    G = nx.gnp_random_graph(n, p)
     while not nx.is_connected(G):
         G = nx.gnp_random_graph(n, p)
 

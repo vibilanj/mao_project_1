@@ -1,4 +1,4 @@
-# Disjoint Set data structure for the Union-Find algorithm
+# Disjoint Set data structure for the Union-Find algorithm.
 # This is used to check whether the edge that we are considering adding to the
 # spanning tree forms a cycle or not.
 class DisjointSet:

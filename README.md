@@ -14,3 +14,12 @@ Alternatively, for a more interactive experience (time permitting), a graphical 
 
 - To ensure that the answer is correct, we can either check that the minimum cost is the same (regardless of uniqueness) or check that the edges provided for the MST are exactly the same (only works for graphs that have a unique minimum spanning tree)
 - Minimum spanning trees are guaranteed to be unique when each edge has a distinct weight (see https://en.wikipedia.org/wiki/Minimum_spanning_tree#Uniqueness)
+
+## Requirements
+
+- An introduction to the problem.
+- A description of how you collected or simulated data (if applicable).
+- A formal statement of the problem as a network problem.
+- A discussion of the assumptions made and limitations of the model.
+- Appropriate visualizations.
+- A .txt file with the code you used.
